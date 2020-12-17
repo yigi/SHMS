@@ -5,6 +5,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import domain.DeviceManager;
+import ui.SHMSPanel;
+
 public class Main {
 	
 	private static final String fileName = "objects.dat";
@@ -32,8 +35,10 @@ public class Main {
 		}
 		
 
-		//DeviceManager deviceManager = new DeviceManager(root.deviceList);
-		//DefinitionManager definitionManager = new DefinitionManager(root.roomList);
+		DeviceManager deviceManager = new DeviceManager(root.initialDeviceList);
+		SHMSPanel panel = new SHMSPanel(deviceManager);
+		
+		panel.show();
 		
 
 		try 

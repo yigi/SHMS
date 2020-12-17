@@ -22,4 +22,22 @@ public class Room
 	{
 		this.name = name;
 	}
+
+	public List<Device> getDevices() {
+		return devices;
+	}
+	
+	public Device findDevice(int id) 
+	{
+		Device toFind = null;
+		for (Device d : devices) 
+		{
+			if (d.getDeviceID() == id) 
+			{
+				toFind = d;
+				break;
+			}
+		}
+		return toFind;
+	}
 }

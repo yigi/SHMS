@@ -2,10 +2,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Root implements Serializable {
+import domain.Device;
+
+public class Root implements Serializable 
+{
+	public List<Device> initialDeviceList;
 	
 	public Root() 
 	{
+		initialDeviceList = new ArrayList<Device>();
 	}
-
 }
