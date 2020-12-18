@@ -27,8 +27,14 @@ public class Device implements Serializable
 		this.deviceID = id;
 	}
 
-	public void setProductName(DeviceInfo info) {
+	public void setdeviceInfo(DeviceInfo info) 
+	{
 		this.deviceInfo = info;
+	}
+	
+	public DeviceInfo getDeviceInfo()
+	{
+		return deviceInfo;
 	}
 	
 	public void setRoom(Room room) 
