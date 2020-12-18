@@ -25,6 +25,7 @@ public class SHMSPanel
 			int input = getNextInput("Choose 1, 2 or 3");
 			switch (input) 
 			{
+			// Manage Devices
 			case 1:
 				listDevices();
 				displayManageDeviceMenu();
@@ -48,9 +49,28 @@ public class SHMSPanel
 					//buradan ekleyebiliriz device bu sekilde
 					deviceManager.addDevice(newID, newInfo, newRoom, newProtocol);
 					break;
-					
-				// update existing product
+				// Update Device
+				case 2:
+					break;
+				// Delete Device
+				case 3:
+					break;
+				// Main Menu
+				case 4:
+					break;
+				default:
+					break;
 				}
+			// Manage Definitions
+			case 2:
+			case 3:
+				System.out.printf("Saved. Returning Menu... ");
+				displayMenu();
+				break;
+	
+			default:
+				displayMenu();
+				break;
 			}
 		}
 	}
