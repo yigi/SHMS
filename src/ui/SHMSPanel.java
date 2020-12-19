@@ -166,7 +166,7 @@ public class SHMSPanel
 								break;
 							}
 							break;
-						// Actuator
+							// Actuator
 						case 2:
 							int actuatorOption = getNextInput("Choose 1 for Smart Light, 2 for Curtain, 3 for Air Conditioner");
 							switch (actuatorOption) 
@@ -191,21 +191,22 @@ public class SHMSPanel
 								break;
 							}
 							break;
-
-						default:
-							break;
 						}
 						break;
-					case 3:
+					//Update
+					case 2:
+						break;
+					// delete
+					case 3:						
 						listNetworkProtocolDefinitions();
 						System.out.print("Enter network protocol name: ");
 						String protocolName = scanner.next();
 						System.out.print("Enter connection parameter: ");
 						String parameter = scanner.next();
-						
+
 						NetworkProtocol n = new NetworkProtocol(protocolName, parameter);
 						definitionManager.addNetworkProtocolDefiniton(n);
-						
+						break;
 					default:
 						break;
 					}
