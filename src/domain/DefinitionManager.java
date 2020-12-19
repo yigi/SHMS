@@ -70,4 +70,32 @@ public class DefinitionManager
 		}
 		return toFind;
 	}
+	
+	public NetworkProtocol findNetwork(String protocol) 
+	{
+		NetworkProtocol toFind = null;
+		for (NetworkProtocol n : root.networkProtocolList) 
+		{
+			if (n.getProtocolName().equals(protocol)) 
+			{
+				toFind = n;
+				break;
+			}
+		}
+		return toFind;
+	}
+	
+	public DeviceInfo findDeviceInfo(String name)
+	{
+		DeviceInfo toFind = null;
+		for (DeviceInfo i: root.deviceInfoList) 
+		{
+			if (i.getName().equals(name)) 
+			{
+				toFind = i;
+				break;
+			}
+		}
+		return toFind;
+	}
 }

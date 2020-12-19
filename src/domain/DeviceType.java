@@ -1,6 +1,8 @@
 package domain;
 
-interface DeviceType
+import java.io.Serializable;
+
+public interface DeviceType extends Serializable
 {
 	public String makeOperation(String msg);
 }

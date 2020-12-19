@@ -37,4 +37,18 @@ public class DeviceManager
 	public void removeDevice(Device d) {
 		getDeviceList().remove(d);
 	}
+	
+	public Device findDevice(int id) 
+	{
+		Device toFind = null;
+		for (Device d : root.initialDeviceList) 
+		{
+			if (d.getDeviceID() == id) 
+			{
+				toFind = d;
+				break;
+			}
+		}
+		return toFind;
+	}
 }

@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class Device implements Serializable 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 434620486688667874L;
 	private int deviceID;
 	private DeviceInfo deviceInfo;
 	private Room room;
@@ -32,7 +36,7 @@ public class Device implements Serializable
 		this.deviceID = id;
 	}
 
-	public void setdeviceInfo(DeviceInfo info) 
+	public void setDeviceInfo(DeviceInfo info) 
 	{
 		this.deviceInfo = info;
 	}

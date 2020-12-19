@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Room implements Serializable 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8141914837658198792L;
 	private String name;
 	private List<Device> devices;
 	

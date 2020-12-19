@@ -24,7 +24,6 @@ public class Main {
 		} 
 		catch (EOFException eof) 
 		{
-			System.out.printf("File is empty <%s>...%n", fileName);
 			root = new Root();
 		} 
 		catch (FileNotFoundException fnf) 
