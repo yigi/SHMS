@@ -193,37 +193,40 @@ public class SHMSPanel
 							break;
 						}
 						break;
-					//Update
+						//Update
 					case 2:
 						break;
-					// delete
+						// delete
 					case 3:						
-						listNetworkProtocolDefinitions();
-						System.out.print("Enter network protocol name: ");
-						String protocolName = scanner.next();
-						System.out.print("Enter connection parameter: ");
-						String parameter = scanner.next();
 
-						NetworkProtocol n = new NetworkProtocol(protocolName, parameter);
-						definitionManager.addNetworkProtocolDefiniton(n);
 						break;
 					default:
 						break;
 					}
 					break;
 				case 3:
-					System.out.println();
-					System.out.printf("Saved. Returning Menu... ");
-					System.out.println();
-					break;
+					listNetworkProtocolDefinitions();
+					System.out.print("Enter network protocol name: ");
+					String protocolName = scanner.next();
+					System.out.print("Enter connection parameter: ");
+					String parameter = scanner.next();
 
-				default:
-					displayMenu();
+					NetworkProtocol n = new NetworkProtocol(protocolName, parameter);
+					definitionManager.addNetworkProtocolDefiniton(n);
 					break;
 				}
-				if (input == 3)
-					break;
+			case 3:
+				System.out.println();
+				System.out.printf("Saved. Returning Menu... ");
+				System.out.println();
+				break;
+
+			default:
+				displayMenu();
+				break;
 			}
+			if (input == 3)
+				break;
 		}
 	}
 	private void displayMenu() 
