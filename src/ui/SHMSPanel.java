@@ -57,11 +57,7 @@ public class SHMSPanel
 					System.out.print("Enter protocol: ");
 					String newProtocol = scanner.next();
 
-					//					d.setDeviceID(newID);
-					//					d.setdeviceInfo(newInfo);
-					//					d.setProtocol(newProtocol);
-					//					d.setRoom(newRoom);
-					//					deviceManager.addDevice(d);
+					//deviceManager.addDevice(newID, newInfo, newRoom, newProtocol);
 					break;
 					// Update Device
 				case 2:
@@ -166,7 +162,7 @@ public class SHMSPanel
 								break;
 							}
 							break;
-							// Actuator
+						// Actuator
 						case 2:
 							int actuatorOption = getNextInput("Choose 1 for Smart Light, 2 for Curtain, 3 for Air Conditioner");
 							switch (actuatorOption) 
@@ -193,10 +189,10 @@ public class SHMSPanel
 							break;
 						}
 						break;
-						//Update
+					//Update Device Type
 					case 2:
 						break;
-						// delete
+					// Delete Device Type
 					case 3:						
 
 						break;
@@ -204,7 +200,9 @@ public class SHMSPanel
 						break;
 					}
 					break;
+				// Protocol 
 				case 3:
+					// protocol case add update delete
 					listNetworkProtocolDefinitions();
 					System.out.print("Enter network protocol name: ");
 					String protocolName = scanner.next();
@@ -213,6 +211,8 @@ public class SHMSPanel
 
 					NetworkProtocol n = new NetworkProtocol(protocolName, parameter);
 					definitionManager.addNetworkProtocolDefiniton(n);
+					
+					System.out.printf("Network protocol %s , parameter %s added \n ", protocolName,parameter);
 					break;
 				}
 			case 3:
@@ -270,21 +270,21 @@ public class SHMSPanel
 	{
 		System.out.println("\n1. Add Room\n" + 
 				"2. Update\n" + 
-				"3. Deleted\n");	
+				"3. Delete\n");	
 	}
 
 	private void listDeviceTypeDefinitions()
 	{
 		System.out.println("\n1. Add Type\n" + 
 				"2. Update\n" + 
-				"3. Deleted\n");	
+				"3. Delete\n");	
 	}
 
 	private void listNetworkProtocolDefinitions()
 	{
 		System.out.println("\n1. Add Protocol\n" + 
 				"2. Update\n" + 
-				"3. Deleted\n");	
+				"3. Delete\n");	
 	}
 
 
