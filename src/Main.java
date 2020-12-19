@@ -12,7 +12,7 @@ import ui.SHMSPanel;
 
 public class Main {
 	
-	private static final String fileName = "objects2.dat";
+	private static final String fileName = "objects.dat";
 	private static Root root;
 	
 	public static void main(String[] args) {
