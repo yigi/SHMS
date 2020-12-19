@@ -5,12 +5,14 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import database.Root;
+import domain.DefinitionManager;
 import domain.DeviceManager;
 import ui.SHMSPanel;
 
 public class Main {
 	
-	private static final String fileName = "objects.dat";
+	private static final String fileName = "objects2.dat";
 	private static Root root;
 	
 	public static void main(String[] args) {
@@ -22,7 +24,7 @@ public class Main {
 		} 
 		catch (EOFException eof) 
 		{
-			System.out.printf("There is no data in file <%s>...%n", fileName);
+			System.out.printf("File is empty <%s>...%n", fileName);
 			root = new Root();
 		} 
 		catch (FileNotFoundException fnf) 
@@ -35,8 +37,9 @@ public class Main {
 		}
 		
 
-		DeviceManager deviceManager = new DeviceManager(root.initialDeviceList);
-		SHMSPanel panel = new SHMSPanel(deviceManager);
+		DeviceManager deviceManager = new DeviceManager(root);
+		DefinitionManager definitionManager = new DefinitionManager(root);
+		SHMSPanel panel = new SHMSPanel(deviceManager, definitionManager);
 		
 		panel.show();
 		

@@ -1,6 +1,8 @@
 package domain;
 
-public class NetworkProtocol 
+import java.io.Serializable;
+
+public class NetworkProtocol implements Serializable 
 {
 	private String protocolName;
 	private String connectionParameter;

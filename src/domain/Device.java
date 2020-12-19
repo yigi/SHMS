@@ -9,6 +9,11 @@ public class Device implements Serializable
 	private Room room;
 	private NetworkProtocol protocol;
 	
+	public Device()
+	{
+		
+	}
+	
 	public Device(int deviceID, DeviceInfo deviceInfo, Room room, NetworkProtocol protocol) 
 	{
 		this.deviceID = deviceID;

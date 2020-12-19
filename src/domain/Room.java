@@ -1,16 +1,16 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Room 
+public class Room implements Serializable 
 {
 	private String name;
 	private List<Device> devices;
 	
-	public Room(String name, List<Device> devices )
+	public Room(String name)
 	{
 		this.name = name;
-		this.devices = devices;
 	}
 	
 	public String getName()

@@ -1,9 +1,11 @@
 package domain;
 
-public class DeviceInfo 
+import java.io.Serializable;
+
+public class DeviceInfo implements Serializable 
 {
 	private String name;
-	private DeviceType type;
+	private DeviceType type;//Sensor Actuator
 	
 	public DeviceInfo( String name, DeviceType type)
 	{

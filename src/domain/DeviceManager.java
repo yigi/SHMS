@@ -1,19 +1,31 @@
 package domain;
 
 import java.util.List;
+import database.*;
 
 public class DeviceManager 
 {
+	private Root root;
 	
-	private Room room;
-	
-	public DeviceManager(List<Device> list) 
+	public DeviceManager(Root root) 
 	{
-		room = new Room("My room",list);
+		this.root = root;
 	}
 	
 	public List<Device> getDeviceList() {
-		return room.getDevices();
+		return root.initialDeviceList;
+	}
+	
+	public List<Room> getRoomList() {
+		return root.roomList;
+	}
+	
+	public List<DeviceInfo> getDeviceInfoList() {
+		return root.deviceInfoList;
+	}
+	
+	public List<NetworkProtocol> getProtocolList() {
+		return root.networkProtocolList;
 	}
 	
 	public void addDevice(int deviceID, DeviceInfo deviceInfo, Room room, NetworkProtocol protocol) 
@@ -25,9 +37,4 @@ public class DeviceManager
 	public void removeDevice(Device d) {
 		getDeviceList().remove(d);
 	}
-	
-	public Device findDevice(int deviceID) {
-		return room.findDevice(deviceID);
-	}
-
 }
