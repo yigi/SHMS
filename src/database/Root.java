@@ -10,6 +10,10 @@ import domain.Room;
 
 public class Root implements Serializable 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4236267893289729416L;
 	public List<Device> initialDeviceList;
 	public List<DeviceInfo> deviceInfoList;
 	public List<NetworkProtocol> networkProtocolList;
