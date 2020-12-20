@@ -2,6 +2,7 @@ package domain;
 
 import java.util.List;
 
+// For future development
 public class Home 
 {
 	private List<Room> rooms;

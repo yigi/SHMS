@@ -16,32 +16,10 @@ public class DeviceManager
 		this.scanner = new Scanner(System.in);
 	}
 	
-	public List<Device> getDeviceList() {
-		return root.initialDeviceList;
-	}
-	
-	public List<Room> getRoomList() {
-		return root.roomList;
-	}
-	
-	public List<DeviceInfo> getDeviceInfoList() {
-		return root.deviceInfoList;
-	}
-	
-	public List<NetworkProtocol> getProtocolList() {
-		return root.networkProtocolList;
-	}
-	
-	public void addDevice(int deviceID, DeviceInfo deviceInfo, Room room, NetworkProtocol protocol) 
+	public List<Device> getDeviceList()
 	{
-		Device d = new Device(deviceID, deviceInfo, room, protocol);
-		getDeviceList().add(d);
+		return root.getDeviceList();
 	}
-	
-	public void removeDevice(Device d)
-	{
-		getDeviceList().remove(d);
-	}	
 	
 	public void manageDevices(int deviceInput)
 	{
@@ -101,8 +79,10 @@ public class DeviceManager
 					break;
 				}
 			}
-
-			addDevice(deviceId, info, room, protocol);
+			
+			Device dev = new Device(deviceId, info, room, protocol);
+			root.addDevice(dev);
+			
 			System.out.println("Device successfully added!");
 			break;
 			// Update Device
@@ -190,7 +170,7 @@ public class DeviceManager
 			
 			if (deletedDevice != null)
 			{
-				removeDevice(deletedDevice);
+				root.deleteDevice(deletedDevice);
 				System.out.println("Device deleted successfully!");
 			}
 			else
@@ -198,9 +178,7 @@ public class DeviceManager
 				System.out.println("Device not found!");
 			}
 			
-			break;
-			//List devices
-			
+			break;			
 		default:
 			break;
 		}

@@ -17,49 +17,19 @@ public class DefinitionManager
 		this.scanner = new Scanner(System.in);
 	}
 	
-	public List<Device> getDeviceList() {
-		return root.initialDeviceList;
-	}
-	
-	public List<Room> getRoomList() {
-		return root.roomList;
-	}
-	
-	public List<DeviceInfo> getDeviceInfoList() {
-		return root.deviceInfoList;
-	}
-	
-	public List<NetworkProtocol> getProtocolList() {
-		return root.networkProtocolList;
-	}
-	
-	public void addRoomDefinition( Room r ) 
+	public List<Room> getRoomList()
 	{
-		root.roomList.add(r);
+		return root.getRoomList();
 	}
 	
-	public void addNetworkProtocolDefiniton( NetworkProtocol n)
+	public List<DeviceInfo> getDeviceInfoList()
 	{
-		root.networkProtocolList.add(n);
+		return root.getDeviceInfoList();
 	}
 	
-	public void addDeviceInfoDefinition(DeviceInfo d) 
+	public List<NetworkProtocol> getProtocolList()
 	{
-		root.deviceInfoList.add(d);
-	}
-	public void removeRoomDefinition( Room r ) 
-	{
-		root.roomList.remove(r);
-	}
-	
-	public void removeNetworkProtocolDefiniton( NetworkProtocol n)
-	{
-		root.networkProtocolList.remove(n);
-	}
-	
-	public void removeDeviceInfoDefinition(DeviceInfo d) 
-	{
-		root.deviceInfoList.remove(d);
+		return root.getNetworkProtocolList();
 	}
 
 	public void manageNetworkProtocol(int number)
@@ -75,7 +45,7 @@ public class DefinitionManager
 				if (root.findNetwork(protocolName) == null)
 				{
 					NetworkProtocol n = new NetworkProtocol(protocolName, parameter);
-					addNetworkProtocolDefiniton(n);
+					root.addNetworkProtocol(n);
 					
 					System.out.printf("Network protocol %s , parameter %s added \n ", protocolName,parameter);
 				}
@@ -133,7 +103,7 @@ public class DefinitionManager
 				
 				if (deletedNetwork != null)
 				{
-					removeNetworkProtocolDefiniton(deletedNetwork);
+					root.deleteNetworkProtocol(deletedNetwork);
 					System.out.println("Network Protocol deleted!");
 				}
 				else
@@ -158,7 +128,7 @@ public class DefinitionManager
 			if (roomToBeAdded == null)
 			{
 				roomToBeAdded = new Room(roomName);
-				addRoomDefinition(roomToBeAdded);
+				root.addRoom(roomToBeAdded);
 				System.out.printf("\n Room %s added: \n",roomName);
 			}
 			else
@@ -188,7 +158,7 @@ public class DefinitionManager
 			Room deletedRoom = root.findRoom(roomNameDelete);
 			if (deletedRoom != null)
 			{
-				removeRoomDefinition(deletedRoom);
+				root.deleteRoom(deletedRoom);
 				System.out.printf("Room %s is deleted: \n",roomNameDelete);
 			}
 			else
@@ -227,19 +197,19 @@ public class DefinitionManager
 				case 1:
 					LightingSensor l = new LightingSensor();
 					DeviceInfo d1 = new DeviceInfo(name, l);
-					addDeviceInfoDefinition(d1);
+					root.addDeviceInfo(d1);
 					System.out.println("Lightning Sensor added");
 					break;
 				case 2:
 					TemperatureSensor t = new TemperatureSensor();
 					DeviceInfo d2 = new DeviceInfo(name, t);
-					addDeviceInfoDefinition(d2);
+					root.addDeviceInfo(d2);
 					System.out.println("Temperature Sensor added");
 					break;
 				case 3:
 					DoorCameraSensor d = new DoorCameraSensor();
 					DeviceInfo d3 = new DeviceInfo(name, d);
-					addDeviceInfoDefinition(d3);
+					root.addDeviceInfo(d3);
 					System.out.println("Door Camera Sensor added");
 					break;
 				}
@@ -252,19 +222,19 @@ public class DefinitionManager
 				case 1:
 					SmartLight s = new SmartLight();
 					DeviceInfo d1 = new DeviceInfo(name, s);
-					addDeviceInfoDefinition(d1);
+					root.addDeviceInfo(d1);
 					System.out.println("Smart Light added");
 					break;
 				case 2:
 					Curtain c = new Curtain();
 					DeviceInfo d2 = new DeviceInfo(name, c);
-					addDeviceInfoDefinition(d2);
+					root.addDeviceInfo(d2);
 					System.out.println("Curtain added");
 					break;
 				case 3:
 					AirConditioner a = new AirConditioner();
 					DeviceInfo d3 = new DeviceInfo(name, a);
-					addDeviceInfoDefinition(d3);
+					root.addDeviceInfo(d3);
 					System.out.println("Air Conditioner added");
 					break;
 				}
@@ -298,7 +268,7 @@ public class DefinitionManager
 			DeviceInfo deletedInfo = root.findDeviceInfo(deletedName);
 			if (deletedInfo != null)
 			{
-				removeDeviceInfoDefinition(deletedInfo);
+				root.deleteDeviceInfo(deletedInfo);
 				System.out.println("Device type deleted successfully!");
 			}
 			else

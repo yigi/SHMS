@@ -68,8 +68,7 @@ public class Device implements Serializable
 	
 	public String performAction(String msg)
 	{
-		return null;
+		return "";
 	}
-
 	
 }
