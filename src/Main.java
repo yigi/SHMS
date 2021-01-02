@@ -6,8 +6,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import database.Root;
-import domain.DefinitionManager;
-import domain.DeviceManager;
+import domain.ManageDefinitionController;
+import domain.ManageDeviceController;
+import domain.MonitorHomeController;
+import domain.PerformActionController;
 import ui.SHMSPanel;
 
 public class Main {
@@ -36,9 +38,11 @@ public class Main {
 		}
 		
 
-		DeviceManager deviceManager = new DeviceManager(root);
-		DefinitionManager definitionManager = new DefinitionManager(root);
-		SHMSPanel panel = new SHMSPanel(deviceManager, definitionManager);
+		ManageDeviceController deviceController = new ManageDeviceController(root);
+		ManageDefinitionController definitionController = new ManageDefinitionController(root);
+		MonitorHomeController homeController = new MonitorHomeController(root);
+		PerformActionController actionController = new PerformActionController(root);
+		SHMSPanel panel = new SHMSPanel(deviceController, definitionController, homeController, actionController);
 		
 		panel.show();
 		

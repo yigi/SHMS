@@ -1,16 +1,17 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import database.*;
 
-public class DeviceManager 
+public class ManageDeviceController 
 {
 	private Root root;
 	private Scanner scanner;
 	
-	public DeviceManager(Root root) 
+	public ManageDeviceController(Root root) 
 	{
 		this.root = root;
 		this.scanner = new Scanner(System.in);
@@ -19,6 +20,21 @@ public class DeviceManager
 	public List<Device> getDeviceList()
 	{
 		return root.getDeviceList();
+	}
+	
+	public List<Device> getActuatorDeviceList()
+	{
+		List<Device> actuators = new ArrayList<>();
+		
+		for (Device dev : getDeviceList())
+		{
+			if (dev.getDeviceInfo().getDeviceType() instanceof Actuator)
+			{
+				actuators.add(dev);
+			}
+		}
+		
+		return actuators;
 	}
 	
 	public void manageDevices(int deviceInput)

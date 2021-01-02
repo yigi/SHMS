@@ -2,24 +2,30 @@ package ui;
 
 import java.util.Scanner;
 
-import domain.DeviceManager;
+import domain.ManageDeviceController;
+import domain.MonitorHomeController;
 import domain.NetworkProtocol;
+import domain.PerformActionController;
 import domain.Room;
 import domain.Sensor;
-import domain.DefinitionManager;
+import domain.ManageDefinitionController;
 import domain.Device;
 import domain.DeviceInfo;
 
 public class SHMSPanel 
 {
 	private Scanner scanner = new Scanner(System.in);
-	private DeviceManager deviceManager;
-	private DefinitionManager definitionManager;
+	private ManageDeviceController deviceController;
+	private ManageDefinitionController definitionController;
+	private MonitorHomeController homeController;
+	private PerformActionController actionController;
 
-	public SHMSPanel(DeviceManager deviceManager,DefinitionManager definitionManager) 
+	public SHMSPanel(ManageDeviceController deviceController,ManageDefinitionController definitionController, MonitorHomeController homeController, PerformActionController actionController) 
 	{
-		this.deviceManager = deviceManager;
-		this.definitionManager = definitionManager;
+		this.deviceController = deviceController;
+		this.definitionController = definitionController;
+		this.homeController = homeController;
+		this.actionController = actionController;
 	}
 
 	public void show() 
@@ -44,7 +50,7 @@ public class SHMSPanel
 				case 1:
 				case 2:
 				case 3:
-					deviceManager.manageDevices(deviceInput);
+					deviceController.manageDevices(deviceInput);
 					break;
 					//List devices
 				case 4:
@@ -72,7 +78,7 @@ public class SHMSPanel
 						case 1:
 						case 2:
 						case 3:
-							definitionManager.manageRooms(definitonRoomInput);
+							definitionController.manageRooms(definitonRoomInput);
 							break;
 						case 4:
 							listRooms();
@@ -92,7 +98,7 @@ public class SHMSPanel
 						case 1:
 						case 2:
 						case 3:
-							definitionManager.manageDeviceTypes(definitonDeviceTypeInput);
+							definitionController.manageDeviceTypes(definitonDeviceTypeInput);
 							break;
 						case 4:
 							listDeviceTypes();
@@ -106,14 +112,14 @@ public class SHMSPanel
 					handleNetworkProtocol();
 					break;
 				}
+			break;
 			// Monitor Home
 			case 3:
-				// list sensor
+				handleMonitorHome();
 				break;
 			// Perform Action
 			case 4:
-				// list actuator
-				
+				handlePerformAction();
 				break;
 			case 5:
 				System.out.println();
@@ -124,9 +130,48 @@ public class SHMSPanel
 				displayMenu();
 				break;
 			}
-			if (input == 3)
+			if (input == 5)
+			{
+				System.out.println("Exiting application...");
 				break;
+			}
 		}
+	}
+	
+	private void handlePerformAction()
+	{
+		listActuatorDeviceIDs();
+
+		int deviceID = getNextInput("Choose Device ID to perform action: ");
+
+		listActionTypes();
+		
+		int actionNumber = getNextInput("Choose 1 or 2: ");
+		
+		actionController.performAction(deviceID, actionNumber);
+	}
+	
+	private void listActionTypes()
+	{
+		System.out.println("1) Turn On");
+		System.out.println("2) Turn Off");
+	}
+	
+	private void handleMonitorHome()
+	{
+		listDeviceIDs();
+		
+		int deviceID = getNextInput("Choose Device ID to monitor, enter 0 to monitor all: ");
+		
+		if ( deviceID == 0 )
+		{
+			homeController.monitorAllDevices();
+		}
+		else
+		{
+			homeController.monitorDevice(deviceID);
+		}
+		
 	}
 	
 	private void handleNetworkProtocol()
@@ -141,7 +186,7 @@ public class SHMSPanel
 			case 1:
 			case 2:
 			case 3:
-				definitionManager.manageNetworkProtocol(number);
+				definitionController.manageNetworkProtocol(number);
 				break;
 			case 4:
 				listNetworkProtocols();
@@ -158,13 +203,13 @@ public class SHMSPanel
 		System.out.printf("%n------------------ROOMS-------------------%n");
 		System.out.printf("Room Name%n");
 
-		if(definitionManager.getRoomList().isEmpty())
+		if(definitionController.getRoomList().isEmpty())
 		{
 			System.out.println("-----------------No Room On SHMS------------------");
 		}
 		else
 		{
-			for (Room r: definitionManager.getRoomList()) 
+			for (Room r: definitionController.getRoomList()) 
 			{
 
 				System.out.printf("%s%n", 
@@ -187,13 +232,13 @@ public class SHMSPanel
 		System.out.printf("%n------------------NETWORK PROTOCOLS-------------------%n");
 		System.out.printf("Protocol Name      Connection Parameter %n");
 
-		if(definitionManager.getProtocolList().isEmpty())
+		if(definitionController.getProtocolList().isEmpty())
 		{
 			System.out.println("-----------------No Network Protocol On SHMS------------------");
 		}
 		else
 		{
-			for (NetworkProtocol n: definitionManager.getProtocolList()) 
+			for (NetworkProtocol n: definitionController.getProtocolList()) 
 			{
 
 				System.out.printf("%s                 %s%n", 
@@ -208,13 +253,13 @@ public class SHMSPanel
 		System.out.printf("%n------------------DEVICE TYPES-------------------%n");
 		System.out.printf("Device name      Device Type %n");
 
-		if(definitionManager.getDeviceInfoList().isEmpty())
+		if(definitionController.getDeviceInfoList().isEmpty())
 		{
 			System.out.println("-----------------No Device Type On SHMS------------------");
 		}
 		else
 		{
-			for (DeviceInfo i: definitionManager.getDeviceInfoList()) 
+			for (DeviceInfo i: definitionController.getDeviceInfoList()) 
 			{
 
 				System.out.printf("%s                 %s%n", 
@@ -229,13 +274,13 @@ public class SHMSPanel
 		System.out.printf("%n------------------DEVICES-------------------%n");
 		System.out.printf("Device ID      Device Info       Protocol       Room %n");
 
-		if( deviceManager.getDeviceList().isEmpty())
+		if( deviceController.getDeviceList().isEmpty())
 		{
 			System.out.println("-----------------No Device On SHMS------------------");
 		}
 		else
 		{
-			for (Device d : deviceManager.getDeviceList()) 
+			for (Device d : deviceController.getDeviceList()) 
 			{
 
 				System.out.printf("%d                %s                 %s          %s             %n", 
@@ -243,6 +288,46 @@ public class SHMSPanel
 						d.getDeviceInfo().getName(),
 						d.getProtocol().getProtocolName(),
 						d.getRoom().getName());
+			}
+		}
+	}
+	
+	private void listDeviceIDs() 
+	{
+		System.out.printf("%n------------------DEVICE IDS-------------------%n");
+		System.out.printf("Device ID%n");
+
+		if( deviceController.getDeviceList().isEmpty())
+		{
+			System.out.println("-----------------No Device On SHMS------------------");
+		}
+		else
+		{
+			for (Device d : deviceController.getDeviceList()) 
+			{
+
+				System.out.printf("%d%n", 
+						d.getDeviceID());
+			}
+		}
+	}
+	
+	private void listActuatorDeviceIDs() 
+	{
+		System.out.printf("%n------------------ACTUATOR DEVICE IDS-------------------%n");
+		System.out.printf("Device ID%n");
+
+		if( deviceController.getActuatorDeviceList().isEmpty())
+		{
+			System.out.println("-----------------No Actuator Device On SHMS------------------");
+		}
+		else
+		{
+			for (Device d : deviceController.getActuatorDeviceList()) 
+			{
+
+				System.out.printf("%d%n", 
+						d.getDeviceID());
 			}
 		}
 	}

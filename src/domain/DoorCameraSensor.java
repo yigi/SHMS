@@ -9,6 +9,6 @@ public class DoorCameraSensor extends Sensor
 
 	public String readSensor() 
 	{
-		return "33";
+		return "1";
 	}
 }

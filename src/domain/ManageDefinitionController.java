@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 import database.*;
 
-public class DefinitionManager 
+public class ManageDefinitionController 
 {
 	private Root root;
 	
 	private Scanner scanner;
 	
-	public DefinitionManager(Root root) 
+	public ManageDefinitionController(Root root) 
 	{
 		this.root = root;
 		this.scanner = new Scanner(System.in);

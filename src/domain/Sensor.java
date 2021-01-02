@@ -9,9 +9,15 @@ public abstract class Sensor implements DeviceType
 
 	public String makeOperation( String msg ) 
 	{
-		return null;
+		//return null;
+		
+		if ( msg.equals("Monitor") )
+		{
+			return readSensor();
+		}
+		
+		return "";
 	}
 	
 	public abstract String readSensor();
-
 }
