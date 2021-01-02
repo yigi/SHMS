@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.List;
-import java.util.Scanner;
 
 import database.*;
 
@@ -38,7 +37,10 @@ public class MonitorHomeController
 			System.out.println("Device ID: " + deviceID);
 			System.out.println("Status: " + monitorStatus);
 		}
-		
+		else
+		{
+			System.out.println("No such device!");
+		}
 	}
 
 }
