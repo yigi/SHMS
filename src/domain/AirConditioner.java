@@ -9,9 +9,17 @@ public class AirConditioner extends Actuator
 
 	public void turnOnDevice() 
 	{
+		System.out.println("Device turned on \n");
 	}
 
 	public void turnOffDevice() 
 	{
+		System.out.println("Device turned off \n");
+	}
+
+	@Override
+	public String getStatus() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

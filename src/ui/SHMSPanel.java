@@ -28,7 +28,7 @@ public class SHMSPanel
 		while (true) 
 		{
 			displayMenu();
-			int input = getNextInput("Choose 1, 2 or 3");
+			int input = getNextInput("Choose 1, 2, 3, 4 or 5");
 			switch (input) 
 			{
 			// Manage Devices
@@ -106,7 +106,16 @@ public class SHMSPanel
 					handleNetworkProtocol();
 					break;
 				}
+			// Monitor Home
 			case 3:
+				// list sensor
+				break;
+			// Perform Action
+			case 4:
+				// list actuator
+				
+				break;
+			case 5:
 				System.out.println();
 				System.out.printf("Returning Main Menu... ");
 				System.out.println();
@@ -168,7 +177,9 @@ public class SHMSPanel
 	{
 		System.out.println("\n1. Manage Devices\n" +
 				"2. Manage Definitions\n" +
-				"3. Save & Exit\n");
+				"3. Monitor Home\n" +
+				"4. Perform Action\n" +
+				"5. Save & Exit\n");
 	}
 
 	private void listNetworkProtocols()
